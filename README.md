@@ -1,1 +1,1 @@
-# terraform-kafka-zk-3node-cluster
+# terraform-sample-ec2-machine
