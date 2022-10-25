@@ -15,3 +15,6 @@ username = "ubuntu"
 
 #profile
 profile = "test"
+
+#instance count
+instance_count = "3"

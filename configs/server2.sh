@@ -54,9 +54,9 @@ EOF
 
 string="$(aws ssm get-parameter --name "/test/private-ip" --query "Parameter.Value" --output text --region us-west-2)"
 array=(`echo $string | sed 's/,/\n/g'`)
-server1="$${array[0]}"
-server2="$${array[1]}"
-server3="$${array[2]}"
+server1_private="$${array[0]}"
+server2_private="$${array[1]}"
+server3_private="$${array[2]}"
 
 sudo cat > /zk/conf/zoo.cfg << EOF
 tickTime=2000
@@ -68,9 +68,9 @@ dataLogDir=/zk/data-log
 maxClientCnxns=60
 autopurge.snapRetainCount=3
 autopurge.purgeInterval=1
-server.1=$server1:2888:3888
+server.1=$server1_private:2888:3888
 server.2=0.0.0.0:2888:3888
-server.3=$server3:2888:3888
+server.3=$server3_private:2888:3888
 EOF
 
 
@@ -118,9 +118,9 @@ mv /kafka/config/server.properties /kafka/config/server.properties-backup
 
 string="$(aws ssm get-parameter --name "/test/public-ip" --query "Parameter.Value" --output text --region us-west-2)"
 array=(`echo $string | sed 's/,/\n/g'`)
-server1="$${array[0]}"
-server2="$${array[1]}"
-server3="$${array[2]}"
+server1_public="$${array[0]}"
+server2_public="$${array[1]}"
+server3_public="$${array[2]}"
 
 sudo cat > /kafka/config/server.properties << EOF
 broker.id=1
@@ -138,10 +138,10 @@ transaction.state.log.min.isr=1
 log.retention.hours=168
 log.segment.bytes=1073741824
 log.retention.check.interval.ms=300000
-zookeeper.connect=$server1:2181,$server2:2181,$server3:2181
+zookeeper.connect=$server1_public:2181,$server2_public:2181,$server3_public:2181
 zookeeper.connection.timeout.ms=18000
 group.initial.rebalance.delay.ms=0
-advertised.listeners=PLAINTEXT://$server2:9092
+advertised.listeners=PLAINTEXT://$server2_public:9092
 EOF
 
 sudo systemctl start zookeeper

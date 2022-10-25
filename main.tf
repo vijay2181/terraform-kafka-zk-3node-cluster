@@ -1,8 +1,3 @@
-variable "hostnames" {
-  default = ["server1.sh", "server2.sh",
-  "server3.sh"]
-}
-
 data "template_file" "user-data" {
   count    = "${length(var.hostnames)}"
   template = "${file("${element(var.hostnames, count.index)}")}"

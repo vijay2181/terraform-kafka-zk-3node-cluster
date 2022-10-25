@@ -48,3 +48,9 @@ variable "profile" {
 variable "instance_count" {
   default = "3"
 }
+
+
+variable "hostnames" {
+  default = ["configs/server1.sh", "configs/server2.sh",
+  "configs/server3.sh"]
+}
