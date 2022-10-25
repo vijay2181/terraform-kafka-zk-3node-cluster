@@ -100,7 +100,7 @@ nc -z -v <pubic_ip> 9092
 
 create topic:-
 ==============
-/kafka/bin/kafka-topics.sh --create --if-not-exists --bootstrap-server 34.215.65.76:9092 --replication-factor 3 --partitions 5 --topic vijay-test-topic
+/kafka/bin/kafka-topics.sh --create --if-not-exists --bootstrap-server <public_ip>:9092 --replication-factor 3 --partitions 5 --topic vijay-test-topic
 
 /kafka/bin/kafka-topics.sh --describe --topic vijay-test-topic --bootstrap-server <public_ip>:9092    
 
@@ -108,6 +108,7 @@ create topic:-
 
 open any kafka windows client tool like offset explorer to view/manage from windows
 
-![image](https://user-images.githubusercontent.com/66196388/197685535-d333fe42-bef9-47a5-9184-2c8d7cddd25e.png)
+![image](https://user-images.githubusercontent.com/66196388/197685977-54a62e3d-c071-4240-ae08-1db2f49697f7.png)
+
 
 
