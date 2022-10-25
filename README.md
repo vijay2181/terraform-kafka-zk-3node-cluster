@@ -1,4 +1,3 @@
-# terraform-sample-ec2-machine
 3 Node Zookeeper and Kafka Cluster
 ---------------------------------------
 
